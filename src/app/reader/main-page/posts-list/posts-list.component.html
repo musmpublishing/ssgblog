@@ -1,0 +1,9 @@
+<p>posts-list works!</p>
+<div class="container">
+  <div class="row">
+    @for (post of posts$ | async; track post.id) {
+    <a [routerLink]="['/posts', post.id]">{{ post.title }}</a>
+    <p>{{ post.content }}</p>
+    }
+  </div>
+</div>

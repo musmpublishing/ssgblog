@@ -1,0 +1,5 @@
+<p>
+  {{ post$ | async | json }}
+</p>
+<app-add-comment [postId]="id"></app-add-comment>
+<app-comments [postId]="id" [comments$]="comments$()"></app-comments>
