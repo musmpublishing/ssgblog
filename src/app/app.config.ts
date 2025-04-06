@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideZoneChangeDetection } from "@angular/core";
-import { provideRouter } from "@angular/router";
+import { provideRouter, withComponentInputBinding } from "@angular/router";
 
 import { routes } from "./app.routes";
 import {
@@ -13,12 +13,14 @@ import { getFirestore, provideFirestore } from "@angular/fire/firestore";
 import { getFunctions, provideFunctions } from "@angular/fire/functions";
 import { getStorage, provideStorage } from "@angular/fire/storage";
 import { environment } from "../environments/environment.development";
+import { provideNativeDateAdapter } from "@angular/material/core";
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideNativeDateAdapter(),
     provideHttpClient(withFetch()),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideRouter(routes, withComponentInputBinding()),
     provideClientHydration(withEventReplay()),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

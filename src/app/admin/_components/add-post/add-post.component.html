@@ -1,0 +1,19 @@
+@defer {
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+  <label for="title">Title:</label>
+  <input type="text" id="title" formControlName="title" required="" />
+  @if (postForm.get('title')?.invalid && (postForm.get('title')?.dirty ||
+  postForm.get('title')?.touched)) { @if
+  (postForm.get('title')?.errors?.['required']) {
+  <div>Title is required.</div>
+  } }
+  <label for="content">Content:</label>
+  <input type="text" id="content" formControlName="content" required="" />
+  @if (postForm.get('content')?.invalid && (postForm.get('content')?.dirty ||
+  postForm.get('content')?.touched)) { @if
+  (postForm.get('content')?.errors?.['required']) {
+  <div>Title is required.</div>
+  } }
+  <button type="submit" [disabled]="postForm.invalid">Submit</button>
+</form>
+}
